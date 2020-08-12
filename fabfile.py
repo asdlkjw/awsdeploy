@@ -142,8 +142,8 @@ def _update_virtualenv():
     run('%s/bin/pip install -r %s/requirements.txt' % (
         virtualenv_folder, project_folder
     ))
-    run('%s/bin/python -m pip install --upgrade pip' % (
-        virtualenv_folder
+    run('%s/bin/python -m pip install --upgrade pip %s/requirements.txt' % (
+        virtualenv_folder, project_folder
     ))
 def _ufw_allow():
     sudo("ufw allow 'Apache Full'")
