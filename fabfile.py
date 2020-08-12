@@ -26,7 +26,7 @@ env.hosts       = [
 ]
 env.use_ssh_config  = True
 # ssh로 접속시 필요한 개인키의 상대경로
-env.key_filename    = '../kfq_busan.ppk'
+env.key_filename    = '../kfq_busanAI.pem'
 # 리눅스에 세팅될 원격 위치
 # /home/ubuntu/awsdeploy
 project_folder      = '/home/{}/{}'.format(env.user, PROJECT_NAME)
@@ -82,7 +82,7 @@ def deploy():
 
     # 권한 조정 =>  ubuntu가 엑세스 할 수 있게 조정
     _grant_apache2()
-    
+
     # 아파치 서버 재가동
     _restart_apache2()
 
@@ -141,6 +141,9 @@ def _update_virtualenv():
     # 해당 가상환경 아네, flask, scikit-learn 이 2개가 설치 될 것이다.
     run('%s/bin/pip install -r %s/requirements.txt' % (
         virtualenv_folder, project_folder
+    ))
+    run('%s/bin/python -m pip install --upgrade pip' % (
+        virtualenv_folder
     ))
 def _ufw_allow():
     sudo("ufw allow 'Apache Full'")
