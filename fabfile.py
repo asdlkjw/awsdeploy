@@ -70,7 +70,7 @@ def deploy():
     _get_latest_source()
 
     # 생략
-    # _put_envs()
+    _put_envs()
 
     # 가상환경 업데이트
     _update_virtualenv()
@@ -108,7 +108,7 @@ def _make_virtualenv():
     # 서비스 운영을 가상환경을 통해서 제공할 것인데,
     # 그 가상환경을 세팅하는 내용이다.
     if not exists('~/.virtualenvs'):
-        script = '''"# python virtualenv setings
+        script = '''"# python virtualenv settings
                     export WORKON_HOME=~/.virtualenvs
                     export VIRTUALENVWRAPPER_PYTHON="$(command \which python3)"  # location of python3
                     source /usr/local/bin/virtualenvwrapper.sh"'''
@@ -134,6 +134,9 @@ def _update_virtualenv():
     # 필요한 패키지를 설치하시오
     # pip install -r %s/requirements.txt
     virtualenv_folder = project_folder + '/../.virtualenvs/{}'.format(PROJECT_NAME)
+    run('%s/bin/python -m pip install --upgrade pip' % (
+        virtualenv_folder
+    ))
     if not exists(virtualenv_folder + '/bin/pip'):
         # $> cd / home/ubuntu/.virtualenvs
         # $> virtualenvs awsdeploy : 가상환경을 만들어라
@@ -141,9 +144,6 @@ def _update_virtualenv():
     # 해당 가상환경 아네, flask, scikit-learn 이 2개가 설치 될 것이다.
     run('%s/bin/pip install -r %s/requirements.txt' % (
         virtualenv_folder, project_folder
-    ))
-    run('%s/bin/python -m pip install --upgrade pip' % (
-        virtualenv_folder
     ))
 def _ufw_allow():
     sudo("ufw allow 'Apache Full'")
