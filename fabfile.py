@@ -134,9 +134,6 @@ def _update_virtualenv():
     # 필요한 패키지를 설치하시오
     # pip install -r %s/requirements.txt
     virtualenv_folder = project_folder + '/../.virtualenvs/{}'.format(PROJECT_NAME)
-    run('%s/bin/python -m pip install --upgrade pip' % (
-        virtualenv_folder
-    ))
     if not exists(virtualenv_folder + '/bin/pip'):
         # $> cd / home/ubuntu/.virtualenvs
         # $> virtualenvs awsdeploy : 가상환경을 만들어라

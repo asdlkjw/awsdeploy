@@ -1,7 +1,7 @@
 {
   "REPO_URL":"https://github.com/asdlkjw/awsdeploy",
   "PROJECT_NAME":"awsdeploy",
-  "REMOTE_HOST":"ec2-3-23-127-68.us-east-2.compute.amazonaws.com",
-  "REMOTE_HOST_SSH":"3.23.127.68",
+  "REMOTE_HOST":"ec2-18-220-93-179.us-east-2.compute.amazonaws.com",
+  "REMOTE_HOST_SSH":"18-220-93-179",
   "REMOTE_USER":"ubuntu"
 }
